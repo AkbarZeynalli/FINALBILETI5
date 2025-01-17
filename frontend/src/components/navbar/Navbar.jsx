@@ -3,8 +3,11 @@ import "./Navbar.scss";
 import { Link } from "react-router";
 import { FaHeart } from "react-icons/fa";
 import { SlBasket } from "react-icons/sl";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const { basket } = useSelector((state) => state.basket);
+  const totalCount = basket.reduce((acc, item) => acc + item.count, 0);
   return (
     <div className="navbar-container">
       <div className="logo">
@@ -48,6 +51,7 @@ const Navbar = () => {
           <div className="basket">
             <Link to="/basket">
               <SlBasket />
+              <sup>{totalCount}</sup>
             </Link>
           </div>
         </div>
