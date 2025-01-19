@@ -12,6 +12,15 @@ export const getData = createAsyncThunk("getproduct", async () => {
     return data.products
 })
 
+export const addProduct = createAsyncThunk('add', async (product) => {
+    const { data } = await axios.post("http://localhost:5000/api/Product", product)
+    return product
+})
+export const delProduct = createAsyncThunk('delete', async (id) => {
+    await axios.delete(`${baseUrl}/${id}`)
+    return id
+})
+
 export const productSlice = createSlice({
     name: 'counter',
     initialState,
@@ -20,10 +29,15 @@ export const productSlice = createSlice({
         builder.addCase(getData.fulfilled, (state, action) => {
             state.products = action.payload
         })
+        builder.addCase(addProduct.fulfilled, (state, action) => {
+            state.products.push({ ...action.payload })
+        }),
+            builder.addCase(delProduct.fulfilled, (state, action) => {
+                state.products = state.products.filter((product) => product._id !== action.payload)
+            })
     }
 })
 
-// Action creators are generated for each case reducer function
 export const { extraReducers } = productSlice.actions
 
 export default productSlice.reducer

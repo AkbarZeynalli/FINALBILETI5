@@ -1,8 +1,8 @@
-import mongoose  from "mongoose";
+import mongoose from "mongoose";
 
-mongoose.connect(process.env.MONGO_URI).then(()=>{
+mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log("Connect");
-}).catch(()=>{
+}).catch(() => {
     console.log("Not Conneect");
 })
 

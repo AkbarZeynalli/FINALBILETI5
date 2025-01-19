@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Catagori = () => {
-  return (
-    <div>Catagori</div>
-  )
-}
+  return <div>Catagori</div>;
+};
 
-export default Catagori
+export default Catagori;
